@@ -1,10 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioListener))]
 public class Listener : MonoBehaviour
 {
+    [SerializeField]
+    GameObject player;
+    [SerializeField]
+    float distance;
     CanvasSoundController soundController;
     // Start is called before the first frame update
     void Start()
@@ -13,19 +20,57 @@ public class Listener : MonoBehaviour
         {
             Debug.LogError("No hay CanvasSoundController");
         }
+        Debug.Log(player);
+        if (player == null)
+        {
+            Debug.LogWarning("No se ha asoiciado player se asume el listener como player");
+            player = gameObject;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        int i= 0;
+        while (soundController.Sounds.Count > 0)
         {
+            CanvasSound sound = soundController.Sounds.Dequeue();
+            Vector3 soundPos = sound.Transform.position;
+            //Despreciamos la y
+            float soundDistance = Mathf.Sqrt(Mathf.Pow((soundPos.x - player.transform.position.x), 2) + Mathf.Pow((soundPos.z - player.transform.position.z), 2));
+            float angle = CalculateAngle(player.transform, sound.Transform);
+            Debug.Log("El sonido esta con angulo de " + angle);
+            if (soundDistance < distance)
+            {
+                GameObject created = new GameObject("Indicator" + i);
+                RectTransform rtransform=created.AddComponent<RectTransform>();
+                RawImage rImage=created.AddComponent<RawImage>();
+                rImage.color = sound.RawImage.color;
+                rImage.texture = sound.RawImage.texture;
+                rImage.material = sound.RawImage.material;
+                rtransform.Rotate(0, 0, angle);
+                rtransform.sizeDelta *= 5;
+                created.SetActive(false);
+                soundController.AddIndicator(created);
+                i++;
+            }
+            else Debug.Log("No se escucha");
+            Debug.Log(soundDistance);
+        }
 
-        while(soundController.Sounds.Count > 0)
-        {
-            CanvasSound sound=soundController.Sounds.Dequeue();
-            Debug.Log(sound.Transform.position.x);
-        }
-        }
+    }
+
+    public float CalculateAngle(Transform playerTransform, Transform otherTransform)
+    {
+
+        Vector3 playerPosition = new Vector3(playerTransform.position.x, 0f, playerTransform.position.z);
+        Vector3 otherPosition = new Vector3(otherTransform.position.x, 0f, otherTransform.position.z);
+
+        Vector3 directionToOther = otherPosition - playerPosition;
+        Vector2 r = new Vector2(player.transform.right.x, player.transform.right.z);
+
+        float angle = Vector2.SignedAngle(r, new Vector2(directionToOther.x, directionToOther.z));
+        angle= (float)Math.Round(angle,3);
+        return angle;
     }
 }
