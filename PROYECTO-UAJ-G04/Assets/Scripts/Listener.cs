@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(AudioListener))]
 public class Listener : MonoBehaviour
@@ -11,7 +12,7 @@ public class Listener : MonoBehaviour
     [SerializeField]
     GameObject player;
     [SerializeField]
-    float distance;
+        float factor;
     CanvasSoundController soundController;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class Listener : MonoBehaviour
         }
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -39,24 +41,30 @@ public class Listener : MonoBehaviour
             //Despreciamos la y
             float soundDistance = Mathf.Sqrt(Mathf.Pow((soundPos.x - player.transform.position.x), 2) + Mathf.Pow((soundPos.z - player.transform.position.z), 2));
             float angle = CalculateAngle(player.transform, sound.Transform);
+
             Debug.Log("El sonido esta con angulo de " + angle);
-            if (soundDistance < distance)
+            if (soundDistance < sound.ListenableDistance)
             {
                 GameObject created = new GameObject("Indicator" + i);
-                RectTransform rtransform=created.AddComponent<RectTransform>();
-                RawImage rImage=created.AddComponent<RawImage>();
+                RectTransform rtransform = created.AddComponent<RectTransform>();
+                RawImage rImage = created.AddComponent<RawImage>();
                 rImage.color = sound.RawImage.color;
                 rImage.texture = sound.RawImage.texture;
                 rImage.material = sound.RawImage.material;
+                double sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
+                double cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
                 rtransform.Rotate(0, 0, angle);
-                rtransform.sizeDelta *= 5;
+                rtransform.sizeDelta *= factor;
                 created.SetActive(false);
+                rtransform.localPosition = new Vector3((float)cosinus * 55, (float)sinus * 55, 0.0f);
                 soundController.AddIndicator(created);
                 i++;
             }
             else Debug.Log("No se escucha");
             Debug.Log(soundDistance);
         }
+
+
 
     }
 

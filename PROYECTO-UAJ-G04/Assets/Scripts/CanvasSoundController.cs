@@ -32,10 +32,11 @@ public class CanvasSoundController : MonoBehaviour
         while (_pendingCircleParts.Count > 0)
         {
             GameObject current= _pendingCircleParts.Dequeue();
+            Vector3 aux=current.GetComponent<RectTransform>().localPosition;
             current.transform.SetParent(canvasCirclePos.transform);
-            current.transform.localPosition = Vector3.zero;
+            current.transform.localPosition =aux;
             current.SetActive(true);
-            print("LateUpdate");
+            //print("LateUpdate");
 
         }
     }

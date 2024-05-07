@@ -7,10 +7,12 @@ public class CanvasSound
 {
 private Transform m_Transform;
     private UnityEngine.UI.RawImage m_RawImage;
-public CanvasSound(Transform transform, UnityEngine.UI.RawImage rawImage)
+    private float m_ListenableDistance;
+public CanvasSound(Transform transform, UnityEngine.UI.RawImage rawImage, float listenableDistance)
     {
         m_Transform = transform;
         m_RawImage = rawImage;
+        m_ListenableDistance = listenableDistance;
     }
     public CanvasSound()
     {
@@ -26,5 +28,9 @@ public CanvasSound(Transform transform, UnityEngine.UI.RawImage rawImage)
     {
         get { return m_RawImage; }
         set { m_RawImage = value; }
+    }
+    public float ListenableDistance
+    {
+        get { return m_ListenableDistance; } set { m_ListenableDistance = value;}
     }
 }
