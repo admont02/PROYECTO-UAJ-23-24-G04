@@ -55,7 +55,7 @@ public class CanvasSoundController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(1.0f);
             for (int i = canvasCirclePos.transform.childCount - 1; i >= 0; i--)
             {
                 // Eliminamos cada hijo

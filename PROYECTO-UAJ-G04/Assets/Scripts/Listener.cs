@@ -37,26 +37,50 @@ public class Listener : MonoBehaviour
         while (soundController.Sounds.Count > 0)
         {
             CanvasSound sound = soundController.Sounds.Dequeue();
-            Vector3 soundPos = sound.Transform.position;
+            Vector3 soundPos = sound.Position;
             //Despreciamos la y
             float soundDistance = Mathf.Sqrt(Mathf.Pow((soundPos.x - player.transform.position.x), 2) + Mathf.Pow((soundPos.z - player.transform.position.z), 2));
-            float angle = CalculateAngle(player.transform, sound.Transform);
+            float angle = CalculateAngle(player.transform, sound.Position);
 
-            Debug.Log("El sonido esta con angulo de " + angle);
-            if (soundDistance < sound.ListenableDistance)
+            Debug.Log("El sonido esta con angulo de " + angle+ sound.Position);
+            if (soundDistance <= sound.ListenableDistance)
             {
+                //Creacion de objeto aqui para evitar creacion/destruccion de objetos inecesarias
                 GameObject created = new GameObject("Indicator" + i);
                 RectTransform rtransform = created.AddComponent<RectTransform>();
                 RawImage rImage = created.AddComponent<RawImage>();
                 rImage.color = sound.RawImage.color;
                 rImage.texture = sound.RawImage.texture;
-                rImage.material = sound.RawImage.material;
+                //rImage.material = sound.RawImage.material;
+                Material nMaterial=new Material(sound.RawImage.material);
+                nMaterial.name = "TestingMaterial";
+                Color c = sound.Color;
+                c.a =  Mathf.Abs(1-soundDistance/sound.ListenableDistance);
+                print("Transparencia"+c.a);
+                nMaterial.SetColor("_MainColor", c);    
+                rImage.material=nMaterial;
+                rtransform.sizeDelta *= factor;
+                if (sound.Sprite != null)
+                {
+                    Debug.Log("Trae Imagen");
+                    GameObject child = new GameObject("Icon");
+                    child.transform.SetParent(created.transform);
+                    RectTransform rtransformChild = child.AddComponent<RectTransform>();
+                    RawImage childImage = child.AddComponent<RawImage>();
+                    childImage.texture = sound.Sprite.texture;
+                    rtransformChild.sizeDelta *= sound.SpriteFactor;
+                    rtransformChild.localPosition = new Vector3((rtransform.sizeDelta.x / 2)-(rtransformChild.sizeDelta.x/2), 0, 0);
+                }
                 double sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
                 double cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
                 rtransform.Rotate(0, 0, angle);
-                rtransform.sizeDelta *= factor;
+                if(sound.Sprite != null)
+                {
+                    created.transform.GetChild(0).GetComponent<RectTransform>().Rotate(0, 0, -angle);
+                }
                 created.SetActive(false);
                 rtransform.localPosition = new Vector3((float)cosinus * 55, (float)sinus * 55, 0.0f);
+
                 soundController.AddIndicator(created);
                 i++;
             }
@@ -68,11 +92,11 @@ public class Listener : MonoBehaviour
 
     }
 
-    public float CalculateAngle(Transform playerTransform, Transform otherTransform)
+    public float CalculateAngle(Transform playerTransform, Vector3 objectPosition)
     {
 
         Vector3 playerPosition = new Vector3(playerTransform.position.x, 0f, playerTransform.position.z);
-        Vector3 otherPosition = new Vector3(otherTransform.position.x, 0f, otherTransform.position.z);
+        Vector3 otherPosition = new Vector3(objectPosition.x, 0f, objectPosition.z);
 
         Vector3 directionToOther = otherPosition - playerPosition;
         Vector2 r = new Vector2(player.transform.right.x, player.transform.right.z);

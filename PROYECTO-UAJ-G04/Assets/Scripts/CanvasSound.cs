@@ -5,24 +5,32 @@ using UnityEngine;
 
 public class CanvasSound 
 {
-private Transform m_Transform;
+    private Vector3 m_ObjectPosition;
     private UnityEngine.UI.RawImage m_RawImage;
     private float m_ListenableDistance;
-public CanvasSound(Transform transform, UnityEngine.UI.RawImage rawImage, float listenableDistance)
+    private Color m_Color;
+    private Sprite m_Sprite;
+    private float m_SpriteFactor;
+    private float m_maxDistance;
+public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenableDistance, Color color, Sprite sprite, float spriteFactor, float maxDistance)
     {
-        m_Transform = transform;
+        m_ObjectPosition = pos;
         m_RawImage = rawImage;
         m_ListenableDistance = listenableDistance;
+        m_Color = color;
+        m_Sprite = sprite;
+        m_SpriteFactor = spriteFactor;
+        m_maxDistance = maxDistance;
     }
     public CanvasSound()
     {
         m_RawImage = null;
-        m_Transform=null;
+        m_ObjectPosition=Vector3.zero;
     }
-    public Transform Transform
+    public Vector3 Position
     {
-        get { return m_Transform; }
-        set { m_Transform = value; }
+        get { return m_ObjectPosition; }
+        set { m_ObjectPosition = value; }
     }
     public UnityEngine.UI.RawImage RawImage
     {
@@ -32,5 +40,24 @@ public CanvasSound(Transform transform, UnityEngine.UI.RawImage rawImage, float 
     public float ListenableDistance
     {
         get { return m_ListenableDistance; } set { m_ListenableDistance = value;}
+    }
+    public Color Color
+    {
+        get { return m_Color; }
+        set { m_Color = value; }
+    }
+    public Sprite Sprite
+    { get { return m_Sprite; }
+        set { m_Sprite = value; }
+    }
+    public float SpriteFactor
+    {
+        get { return m_SpriteFactor; }
+        set { m_SpriteFactor = value; }
+    }
+    public float MaxDistance
+    {
+        get { return m_maxDistance; }
+        set { m_maxDistance=value; }
     }
 }
