@@ -12,7 +12,11 @@ public class Listener : MonoBehaviour
     [SerializeField]
     GameObject player;
     [SerializeField]
-        float factor;
+    float factor;
+    [SerializeField]
+    float w_factor;
+    [SerializeField]
+    float h_factor;
     CanvasSoundController soundController;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +37,7 @@ public class Listener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int i= 0;
+        int i = 0;
         while (soundController.Sounds.Count > 0)
         {
             CanvasSound sound = soundController.Sounds.Dequeue();
@@ -42,7 +46,7 @@ public class Listener : MonoBehaviour
             float soundDistance = Mathf.Sqrt(Mathf.Pow((soundPos.x - player.transform.position.x), 2) + Mathf.Pow((soundPos.z - player.transform.position.z), 2));
             float angle = CalculateAngle(player.transform, sound.Position);
 
-            Debug.Log("El sonido esta con angulo de " + angle+ sound.Position);
+            Debug.Log("El sonido está con ángulo de " + angle + sound.Position);
             if (soundDistance <= sound.ListenableDistance)
             {
                 //Creacion de objeto aqui para evitar creacion/destruccion de objetos inecesarias
@@ -52,29 +56,41 @@ public class Listener : MonoBehaviour
                 rImage.color = sound.RawImage.color;
                 rImage.texture = sound.RawImage.texture;
                 //rImage.material = sound.RawImage.material;
-                Material nMaterial=new Material(sound.RawImage.material);
+                Material nMaterial = new Material(sound.RawImage.material);
                 nMaterial.name = "TestingMaterial";
                 Color c = sound.Color;
-                c.a =  Mathf.Abs(1-soundDistance/sound.ListenableDistance);
-                print("Transparencia"+c.a);
-                nMaterial.SetColor("_MainColor", c);    
-                rImage.material=nMaterial;
+                c.a = Mathf.Abs(1 - soundDistance / sound.ListenableDistance);
+                print("Transparencia " + c.a);
+                nMaterial.SetColor("_MainColor", c);
+                rImage.material = nMaterial;
+
+                // Para separar y hacer más grandes los indicadores
                 rtransform.sizeDelta *= factor;
+
+                // IMAGEN DEL INDICADOR
                 if (sound.Sprite != null)
                 {
                     Debug.Log("Trae Imagen");
                     GameObject child = new GameObject("Icon");
+
                     child.transform.SetParent(created.transform);
+
                     RectTransform rtransformChild = child.AddComponent<RectTransform>();
                     RawImage childImage = child.AddComponent<RawImage>();
+
                     childImage.texture = sound.Sprite.texture;
                     rtransformChild.sizeDelta *= sound.SpriteFactor;
-                    rtransformChild.localPosition = new Vector3((rtransform.sizeDelta.x / 2)-(rtransformChild.sizeDelta.x/2), 0, 0);
+                    rtransformChild.localPosition = new Vector3((rtransform.sizeDelta.x / 2) - (rtransformChild.sizeDelta.x / 2), 0, 0);
+
+                    // Para que las imágenes de los indicadores miren hacia el centro.
+                    rtransformChild.Rotate(0, 0, angle + 90);
+                    // Para cambiar el tamaño de las imágenes de los indicadores (ancho y alto).
+                    rtransformChild.sizeDelta *= new Vector2(w_factor, h_factor);
                 }
                 double sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
                 double cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
                 rtransform.Rotate(0, 0, angle);
-                if(sound.Sprite != null)
+                if (sound.Sprite != null)
                 {
                     created.transform.GetChild(0).GetComponent<RectTransform>().Rotate(0, 0, -angle);
                 }
@@ -102,7 +118,7 @@ public class Listener : MonoBehaviour
         Vector2 r = new Vector2(player.transform.right.x, player.transform.right.z);
 
         float angle = Vector2.SignedAngle(r, new Vector2(directionToOther.x, directionToOther.z));
-        angle= (float)Math.Round(angle,3);
+        angle = (float)Math.Round(angle, 3);
         return angle;
     }
 }
