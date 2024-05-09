@@ -20,7 +20,6 @@ public class Listener : MonoBehaviour
     CanvasSoundController soundController;
 
     private Dictionary<UInt64, GameObject> indicators;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +39,13 @@ public class Listener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Queue<UInt64> stopSound=new Queue<UInt64>();
+        Queue<UInt64> sendSound = new Queue<UInt64>();
+
         while (soundController.Sounds.Count > 0)
         {
             CanvasSound sound = soundController.Sounds.Dequeue();
+            sendSound.Enqueue(sound.Id);
             Vector3 soundPos = sound.Position;
             // Despreciamos la y
             float soundDistance = Mathf.Sqrt(Mathf.Pow((soundPos.x - player.transform.position.x), 2) + Mathf.Pow((soundPos.z - player.transform.position.z), 2));
@@ -62,14 +65,27 @@ public class Listener : MonoBehaviour
                 else
                 {
                     UpdateIndicator(sound, soundDistance, angle);
-                } 
+                }
             }
             else
             {
-                if (indicators.ContainsKey(sound.Id)){
+                if (indicators.ContainsKey(sound.Id))
+                {
                     RemoveIndicator(sound.Id);
                 }
             }
+        }
+        foreach (KeyValuePair<UInt64,GameObject> par in indicators)
+        {
+            if (!sendSound.Contains(par.Key))
+            {
+                //No se elimina aqui para evitar problemas de eliminacion en medio del recorrido
+                stopSound.Enqueue(par.Key);
+            }
+        }
+        foreach(UInt64 id in stopSound)
+        {
+            RemoveIndicator(id);
         }
     }
 
@@ -86,7 +102,7 @@ public class Listener : MonoBehaviour
         angle = (float)Math.Round(angle, 3);
         return angle;
     }
-    private void CreateIndicator(CanvasSound sound , float soundDistance,float angle )
+    private void CreateIndicator(CanvasSound sound, float soundDistance, float angle)
     {
         // Creación de objeto aquí para evitar creación/destrucción de objetos innecesarias
         indicators.Add(sound.Id, new GameObject(sound.Id.ToString()));

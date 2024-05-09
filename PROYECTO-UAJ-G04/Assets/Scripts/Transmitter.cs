@@ -19,59 +19,39 @@ public class Transmitter : MonoBehaviour
     [SerializeField]
     Sprite icon;
     [SerializeField]
-    private float scaleIcon=1.0f;
-
+    private float scaleIcon = 1.0f;
     private UInt64 m_id;
-
-    bool f = true;
+    bool soundPlaying = false;
+    private float timePlaying;
+    [SerializeField]
+    KeyCode key;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource= GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         m_id = CanvasSoundController.instance.Id;
         CanvasSoundController.instance.AddId();
-        sound = new CanvasSound(transform.position, image,listenableDistance,shaderColor,icon,scaleIcon,listenableDistance, m_id);
-        if((soundController=CanvasSoundController.instance) == null)
+        sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor, icon, scaleIcon, listenableDistance, m_id);
+        if ((soundController = CanvasSoundController.instance) == null)
         {
             Debug.LogError("No hay CanvasSoundController");
         }
-        //StartCoroutine(Looping());
     }
 
     // Update is called once per frame
     void Update()
     {
-        test();
+        if (audioSource.isPlaying)
+        {
+            SendEvent();
+        }
     }
 
-    void test() { 
-        sound.Position=transform.position;
-        sound.Color=shaderColor;
+    void SendEvent()
+    {
+        sound.Position = transform.position;
+        sound.Color = shaderColor;
         soundController.ReceiveEvent(sound);
-    }
-    IEnumerator Looping()
-    {
-        if (f)
-        {
-            yield return new WaitForSeconds(0.001f);
-            test();
-            f= false;
-        }
-     
-        while (audioSource.loop)
-        {
-            yield return new WaitForSeconds(audioSource.clip.length);
-            Debug.Log("Sonido");
-            test();
-        }
-    }
-    /// <summary>
-    /// Emite el sonido de audioSource
-    /// </summary>
-    void Play()
-    {
-        test();
-        audioSource.Play();
     }
 }
