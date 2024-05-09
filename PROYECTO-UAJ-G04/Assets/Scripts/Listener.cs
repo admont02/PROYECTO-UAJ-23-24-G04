@@ -19,7 +19,7 @@ public class Listener : MonoBehaviour
     float h_factor;
     CanvasSoundController soundController;
 
-    private Dictionary<UInt64, GameObject> indicators;
+    //private Dictionary<UInt64, GameObject> indicators;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +33,15 @@ public class Listener : MonoBehaviour
             Debug.LogWarning("No se ha asoiciado player se asume el listener como player");
             player = gameObject;
         }
-        indicators = new Dictionary<UInt64, GameObject>();
+        //indicators = new Dictionary<UInt64, GameObject>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Queue<UInt64> stopSound=new Queue<UInt64>();
+        Queue<UInt64> stopSounds=new Queue<UInt64>();
         Queue<UInt64> sendSound = new Queue<UInt64>();
-
+        Dictionary<UInt64, GameObject> indicators = soundController.Indicators;
         while (soundController.Sounds.Count > 0)
         {
             CanvasSound sound = soundController.Sounds.Dequeue();
@@ -52,11 +52,9 @@ public class Listener : MonoBehaviour
             float angle = CalculateAngle(player.transform, sound.Position);
 
             //Debug.Log("El sonido está con ángulo de " + angle + sound.Position);
-            print("Hay");
             // Condición de DISTANCIA.
             if (soundDistance <= sound.ListenableDistance)
             {
-                print("Se escuchan");
                 if (!indicators.ContainsKey(sound.Id))
                 {
                     CreateIndicator(sound, soundDistance, angle);
@@ -64,14 +62,15 @@ public class Listener : MonoBehaviour
                 }
                 else
                 {
-                    UpdateIndicator(sound, soundDistance, angle);
+                    UpdateIndicator(indicators, sound, soundDistance, angle);
                 }
             }
             else
             {
                 if (indicators.ContainsKey(sound.Id))
                 {
-                    RemoveIndicator(sound.Id);
+                    //No se añaden a stopSounds para evitar procesarlos dos veces
+                    soundController.RemoveIndicator(sound.Id);
                 }
             }
         }
@@ -80,12 +79,12 @@ public class Listener : MonoBehaviour
             if (!sendSound.Contains(par.Key))
             {
                 //No se elimina aqui para evitar problemas de eliminacion en medio del recorrido
-                stopSound.Enqueue(par.Key);
+                stopSounds.Enqueue(par.Key);
             }
         }
-        foreach(UInt64 id in stopSound)
+        foreach(UInt64 id in stopSounds)
         {
-            RemoveIndicator(id);
+            soundController.RemoveIndicator(id);
         }
     }
 
@@ -104,12 +103,10 @@ public class Listener : MonoBehaviour
     }
     private void CreateIndicator(CanvasSound sound, float soundDistance, float angle)
     {
-        // Creación de objeto aquí para evitar creación/destrucción de objetos innecesarias
-        indicators.Add(sound.Id, new GameObject(sound.Id.ToString()));
-
+        GameObject nIndicator = new GameObject(sound.Id.ToString());
         // Creamos los componentes de RectTransform y RawImage propios de elementos de UI.
-        RectTransform rtransform = indicators[sound.Id].AddComponent<RectTransform>();
-        RawImage rImage = indicators[sound.Id].AddComponent<RawImage>();
+        RectTransform rtransform = nIndicator.AddComponent<RectTransform>();
+        RawImage rImage = nIndicator.AddComponent<RawImage>();
 
         // Damos valor a su color e imagen.
         rImage.color = sound.RawImage.color;
@@ -134,7 +131,7 @@ public class Listener : MonoBehaviour
             // Creamos la imagen que tendrá el indicador.
             GameObject child = new GameObject("Icon");
 
-            child.transform.SetParent(indicators[sound.Id].transform);
+            child.transform.SetParent(nIndicator.transform);
 
             // Añadimos componentes de RectTransform y RawImage propios de elementos de UI.
             RectTransform rtransformChild = child.AddComponent<RectTransform>();
@@ -158,17 +155,17 @@ public class Listener : MonoBehaviour
 
         if (sound.Sprite != null)
         {
-            indicators[sound.Id].transform.GetChild(0).GetComponent<RectTransform>().Rotate(0, 0, -angle);
+            nIndicator.transform.GetChild(0).GetComponent<RectTransform>().Rotate(0, 0, -angle);
         }
-        indicators[sound.Id].SetActive(true);
+        nIndicator.SetActive(true);
 
         // Colocamos el indicador en una posición sobre la circunferencia de los indicadores.
         rtransform.localPosition = new Vector3((float)cosinus * 55, (float)sinus * 55, 0.0f);
+        soundController.AddIndicator(sound.Id, nIndicator);
 
-        soundController.AddIndicator(sound.Id, indicators[sound.Id]);
     }
 
-    private void UpdateIndicator(CanvasSound sound, float soundDistance, float angle)
+    private void UpdateIndicator(Dictionary<UInt64, GameObject> indicators, CanvasSound sound, float soundDistance, float angle)
     {
         indicators[sound.Id].SetActive(true);
 
@@ -197,11 +194,5 @@ public class Listener : MonoBehaviour
 
         // Colocamos el indicador en una posición sobre la circunferencia de los indicadores.
         rtransform.localPosition = new Vector3((float)cosinus * 55, (float)sinus * 55, 0.0f);
-    }
-
-    private void RemoveIndicator(UInt64 id)
-    {
-        soundController.RemoveIndicator(id);
-        indicators.Remove(id);
     }
 }

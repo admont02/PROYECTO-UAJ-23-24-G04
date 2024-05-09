@@ -10,7 +10,7 @@ public class CanvasSoundController : MonoBehaviour
     public static CanvasSoundController instance;
     private Queue<CanvasSound> _sounds = new Queue<CanvasSound>();
     private Dictionary<UInt64,GameObject> _indicators = new Dictionary<UInt64,GameObject>();
-    private Queue<UInt64> _farIndicators = new Queue<UInt64>();
+    private Queue<UInt64> _indicatorsToDestroy = new Queue<UInt64>();
     private UInt64 m_id;
 
     [SerializeField]
@@ -39,14 +39,14 @@ public class CanvasSoundController : MonoBehaviour
     }
     private void LateUpdate()
     {
-        foreach(UInt64 key in _farIndicators)
+        foreach(UInt64 key in _indicatorsToDestroy)
         {
             GameObject go= _indicators[key];
             _indicators.Remove(key);
            Destroy(go);
             
         }   
-        _farIndicators.Clear();
+        _indicatorsToDestroy.Clear();
     }
 
     public void ReceiveEvent(CanvasSound cSound)
@@ -55,7 +55,7 @@ public class CanvasSoundController : MonoBehaviour
     }
     public Queue<CanvasSound> Sounds { get { return _sounds; } }
     public GameObject CanvasCircleParent { get { return canvasCirclePos; } }
-
+    public Dictionary<UInt64, GameObject> Indicators { get { return _indicators; } }
 
     public void AddIndicator(UInt64 id,GameObject go)
     {
@@ -68,7 +68,7 @@ public class CanvasSoundController : MonoBehaviour
     }
     public void RemoveIndicator(UInt64 id)
     {
-        _farIndicators.Enqueue(id);
+        _indicatorsToDestroy.Enqueue(id);
     }
     public UInt64 AskForID()
     {
