@@ -30,8 +30,8 @@ public class Transmitter : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        m_id = CanvasSoundController.instance.Id;
-        CanvasSoundController.instance.AddId();
+        m_id = CanvasSoundController.instance.AskForID();
+        print(gameObject.name+ m_id);
         sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor, icon, scaleIcon, listenableDistance, m_id);
         if ((soundController = CanvasSoundController.instance) == null)
         {

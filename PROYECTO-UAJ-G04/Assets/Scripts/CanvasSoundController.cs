@@ -56,7 +56,6 @@ public class CanvasSoundController : MonoBehaviour
     public Queue<CanvasSound> Sounds { get { return _sounds; } }
     public GameObject CanvasCircleParent { get { return canvasCirclePos; } }
 
-    public UInt64 Id { get { return m_id; } }
 
     public void AddIndicator(UInt64 id,GameObject go)
     {
@@ -71,11 +70,10 @@ public class CanvasSoundController : MonoBehaviour
     {
         _farIndicators.Enqueue(id);
     }
-    public void AddId()
+    public UInt64 AskForID()
     {
-        m_id++;
+        return m_id++;
     }
-
     IEnumerator Looping()
     {
         while (true)

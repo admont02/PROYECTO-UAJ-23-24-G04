@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasCirclePos: {fileID: 891773614}
+  receptorTransform: {fileID: 0}
 --- !u!4 &220409135
 Transform:
   m_ObjectHideFlags: 0
@@ -807,7 +808,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426234136}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 6982d19440f3bd6439d979ba1e4b46e7, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -955,9 +956,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
   listenableDistance: 20
-  shaderColor: {r: 0.9150943, g: 0.14244394, b: 0.14244394, a: 0.23529412}
+  shaderColor: {r: 0.9150943, g: 0.14244394, b: 0.14244394, a: 1}
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 0.5
+  key: 0
 --- !u!65 &1631326048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1274,11 +1276,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 466aabf9f1d05ca41b8b2c1b9d81cb0f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e534868482507ed489a44114ff0a65be, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1377,6 +1379,7 @@ MonoBehaviour:
   shaderColor: {r: 0.0917798, g: 0.8584906, b: 0.07694017, a: 1}
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 2
+  key: 282
 --- !u!65 &1709964932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1597,6 +1600,7 @@ MonoBehaviour:
   shaderColor: {r: 0, g: 0.150808, b: 0.9716981, a: 1}
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 1
+  key: 0
 --- !u!65 &1767622618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1944,6 +1948,7 @@ MonoBehaviour:
   shaderColor: {r: 0.8875311, g: 0.972549, b: 0, a: 1}
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 0.75
+  key: 0
 --- !u!65 &2147427576
 BoxCollider:
   m_ObjectHideFlags: 0
