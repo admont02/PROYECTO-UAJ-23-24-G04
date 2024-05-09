@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -19,22 +21,28 @@ public class Transmitter : MonoBehaviour
     [SerializeField]
     private float scaleIcon=1.0f;
 
+    private UInt64 m_id;
+
     bool f = true;
+
     // Start is called before the first frame update
     void Start()
     {
         audioSource= GetComponent<AudioSource>();
-        sound = new CanvasSound(transform.position, image,listenableDistance,shaderColor,icon,scaleIcon,listenableDistance);
+        m_id = CanvasSoundController.instance.Id;
+        CanvasSoundController.instance.AddId();
+        sound = new CanvasSound(transform.position, image,listenableDistance,shaderColor,icon,scaleIcon,listenableDistance, m_id);
         if((soundController=CanvasSoundController.instance) == null)
         {
             Debug.LogError("No hay CanvasSoundController");
         }
-        StartCoroutine(Looping());
+        //StartCoroutine(Looping());
     }
 
     // Update is called once per frame
     void Update()
     {
+        test();
     }
 
     void test() { 
@@ -46,7 +54,7 @@ public class Transmitter : MonoBehaviour
     {
         if (f)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.001f);
             test();
             f= false;
         }

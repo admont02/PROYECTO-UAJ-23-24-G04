@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,9 @@ public class CanvasSound
     private Sprite m_Sprite;
     private float m_SpriteFactor;
     private float m_maxDistance;
-public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenableDistance, Color color, Sprite sprite, float spriteFactor, float maxDistance)
+    private UInt64 m_id;
+
+public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenableDistance, Color color, Sprite sprite, float spriteFactor, float maxDistance, UInt64 id)
     {
         m_ObjectPosition = pos;
         m_RawImage = rawImage;
@@ -21,6 +24,7 @@ public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenab
         m_Sprite = sprite;
         m_SpriteFactor = spriteFactor;
         m_maxDistance = maxDistance;
+        m_id = id;
     }
     public CanvasSound()
     {
@@ -59,5 +63,10 @@ public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenab
     {
         get { return m_maxDistance; }
         set { m_maxDistance=value; }
+    }
+    public UInt64 Id
+    {
+        get { return m_id; }
+        set { m_id = value; }
     }
 }
