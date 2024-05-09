@@ -55,7 +55,7 @@ Shader "Custom/ColorWhiteTransparent"
                 float transparency = 1 - smoothstep(_ZoneRadius, _ZoneRadius + 0.02, distToCenter);
                 transparency *= step(0.9999, texColor.r) * step(0.9999, texColor.g) * step(0.9999, texColor.b);
                 fixed4 finalColor = lerp(texColor, _MainColor, transparency);
-                finalColor.a = transparency;
+                finalColor.a = transparency*_MainColor.a;
                 return finalColor;
             }
             ENDCG
