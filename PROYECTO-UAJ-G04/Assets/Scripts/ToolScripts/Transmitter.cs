@@ -17,12 +17,12 @@ public class Transmitter : MonoBehaviour
     [SerializeField]
     Color shaderColor;
     [SerializeField]
+    float scaleIndicator=1.0f;
+    [SerializeField]
     Sprite icon;
     [SerializeField]
     private float scaleIcon = 1.0f;
     private UInt64 m_id;
-    bool soundPlaying = false;
-    private float timePlaying;
     [SerializeField]
     KeyCode key;
 
@@ -32,7 +32,7 @@ public class Transmitter : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         m_id = CanvasSoundController.instance.AskForID();
         print(gameObject.name+ m_id);
-        sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor, icon, scaleIcon, listenableDistance, m_id);
+        sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor,scaleIndicator, icon, scaleIcon, listenableDistance, m_id);
         if ((soundController = CanvasSoundController.instance) == null)
         {
             Debug.LogError("No hay CanvasSoundController");

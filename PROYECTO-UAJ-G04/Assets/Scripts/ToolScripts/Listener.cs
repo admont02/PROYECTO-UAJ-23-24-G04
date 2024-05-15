@@ -11,12 +11,6 @@ public class Listener : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-    [SerializeField]
-    float factor;
-    [SerializeField]
-    float w_factor;
-    [SerializeField]
-    float h_factor;
     CanvasSoundController soundController;
 
     //private Dictionary<UInt64, GameObject> indicators;
@@ -121,10 +115,14 @@ public class Listener : MonoBehaviour
         nMaterial.SetColor("_MainColor", c);
 
         rImage.material = nMaterial;
-
-        // Para separar y hacer más grandes los indicadores
-        rtransform.sizeDelta *= factor;
-
+        rtransform.sizeDelta= new Vector2(soundController.Radius*2, soundController.Radius*2);
+        // Para separar y hacer más grandes los 
+        rtransform.sizeDelta *= sound.IndicatorFactor;
+        // Calculamos la posición en el canvas del indicador teniendo en cuenta el ángulo.
+        float sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
+        float cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
+        float offset = soundController.Radius - soundController.Radius * sound.IndicatorFactor;
+        rtransform.localPosition = new Vector3(cosinus * offset/2, sinus * offset/2, 0.0f);
         // INDICADORES IMAGEN ------------------------------------------------------------------------------------
         if (sound.Sprite != null)
         {
@@ -144,13 +142,9 @@ public class Listener : MonoBehaviour
 
             // Para que las imágenes de los indicadores miren hacia el centro.
             rtransformChild.Rotate(0, 0, angle - 90);
-            // Para cambiar el tamaño de las imágenes de los indicadores (ancho y alto).
-            rtransformChild.sizeDelta *= new Vector2(w_factor, h_factor);
         }
 
-        // Calculamos la posición en el canvas del indicador teniendo en cuenta el ángulo.
-        double sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
-        double cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
+
         rtransform.Rotate(0, 0, angle);
 
         if (sound.Sprite != null)
@@ -160,7 +154,7 @@ public class Listener : MonoBehaviour
         nIndicator.SetActive(true);
 
         // Colocamos el indicador en una posición sobre la circunferencia de los indicadores.
-        rtransform.localPosition = new Vector3((float)cosinus * 55, (float)sinus * 55, 0.0f);
+
         soundController.AddIndicator(sound.Id, nIndicator);
 
     }
@@ -173,15 +167,17 @@ public class Listener : MonoBehaviour
         RectTransform rtransform = indicators[sound.Id].GetComponent<RectTransform>();
         RectTransform rtransformChild = indicators[sound.Id].GetComponentInChildren<RectTransform>();
         rtransform.transform.rotation = new Quaternion(0, 0, 0, 0);
+        float offset = (soundController.Radius - soundController.Radius * sound.IndicatorFactor)/2;
+        float sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
+        float cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
+        rtransform.localPosition = new Vector3(cosinus * offset, sinus * offset, 0.0f);
         rtransform.Rotate(0, 0, angle);
         if (rtransformChild != null)
         {
             rtransformChild.Rotate(0, 0, -angle);
         }
-
         // Calculamos la posición en el canvas del indicador teniendo en cuenta el ángulo.
-        double sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
-        double cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
+
         rtransform.Rotate(0, 0, angle);
         Color c = sound.Color;
         c.a = Mathf.Abs(1 - soundDistance / sound.ListenableDistance);
@@ -193,6 +189,6 @@ public class Listener : MonoBehaviour
         }
 
         // Colocamos el indicador en una posición sobre la circunferencia de los indicadores.
-        rtransform.localPosition = new Vector3((float)cosinus * 55, (float)sinus * 55, 0.0f);
+
     }
 }

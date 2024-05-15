@@ -12,12 +12,16 @@ public class CanvasSoundController : MonoBehaviour
     private Dictionary<UInt64,GameObject> _indicators = new Dictionary<UInt64,GameObject>();
     private Queue<UInt64> _indicatorsToDestroy = new Queue<UInt64>();
     private UInt64 m_id;
-
+    [SerializeField]
+    [Range(1, 100)]
+    int circleSize = 50;
     [SerializeField]
     Transform receptorTransform;
-
+    private int radius;
     private void Awake()
     {
+        radius = Mathf.Min(Screen.currentResolution.width, Screen.currentResolution.height)/2;
+        radius=radius*circleSize/100;
         if (CanvasSoundController.instance == null)
         {
             instance = this;
@@ -74,21 +78,8 @@ public class CanvasSoundController : MonoBehaviour
     {
         return m_id++;
     }
-    IEnumerator Looping()
+    public int Radius
     {
-        while (true)
-        {
-            // Cada segundo COMPRUEBA.
-            yield return new WaitForSeconds(1.0f);
-            for (int i = canvasCirclePos.transform.childCount - 1; i >= 0; i--)
-            {
-                // Si el jugador se ha alejado del emisor de sonido pasado su umbral de recepción, ENTONCES deja de aparecer el indicador.
-                if (Vector2.Distance(canvasCirclePos.transform.GetChild(i).position, receptorTransform.position) >
-                    20)
-                {
-                    canvasCirclePos.transform.GetChild(i).gameObject.SetActive(false);
-                }
-            }
-        }
+        get { return radius; }
     }
 }
