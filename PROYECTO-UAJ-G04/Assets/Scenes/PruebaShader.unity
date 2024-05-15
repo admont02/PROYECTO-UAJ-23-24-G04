@@ -1012,7 +1012,7 @@ MonoBehaviour:
   scaleIndicator: 1
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 0.5
-  key: 0
+  vibration: 119.5
 --- !u!65 &1631326048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1430,10 +1430,10 @@ MonoBehaviour:
   image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
   listenableDistance: 20
   shaderColor: {r: 0.0917798, g: 0.8584906, b: 0.07694017, a: 1}
-  scaleIndicator: 0.5
+  scaleIndicator: 1
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 2
-  key: 282
+  vibration: 67
 --- !u!65 &1709964932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1655,7 +1655,7 @@ MonoBehaviour:
   scaleIndicator: 1
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 1
-  key: 0
+  vibration: 15
 --- !u!65 &1767622618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1998,10 +1998,10 @@ MonoBehaviour:
   image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
   listenableDistance: 20
   shaderColor: {r: 0.8875311, g: 0.972549, b: 0, a: 1}
-  scaleIndicator: 2
+  scaleIndicator: 1
   icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
   scaleIcon: 0.75
-  key: 0
+  vibration: 5
 --- !u!65 &2147427576
 BoxCollider:
   m_ObjectHideFlags: 0

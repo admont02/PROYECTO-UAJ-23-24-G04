@@ -23,6 +23,8 @@ public class Transmitter : MonoBehaviour
     [SerializeField]
     private float scaleIcon = 1.0f;
     private UInt64 m_id;
+    [SerializeField]
+    float vibration= 15.0f;
     
 
     // Start is called before the first frame update
@@ -31,7 +33,7 @@ public class Transmitter : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         m_id = CanvasSoundController.instance.AskForID();
         print(gameObject.name+ m_id);
-        sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor,scaleIndicator, icon, scaleIcon, listenableDistance, m_id);
+        sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor,scaleIndicator, icon, scaleIcon, listenableDistance, m_id,vibration);
         if ((soundController = CanvasSoundController.instance) == null)
         {
             Debug.LogError("No hay CanvasSoundController");

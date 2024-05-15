@@ -113,6 +113,8 @@ public class Listener : MonoBehaviour
         Color c = sound.Color;
         c.a = Mathf.Abs(1 - soundDistance / sound.ListenableDistance);
         nMaterial.SetColor("_Color", c);
+        nMaterial.SetFloat("_Distance", c.a);
+        nMaterial.SetFloat("_Vibration", sound.Vibration);
 
         rImage.material = nMaterial;
         rtransform.sizeDelta= new Vector2(soundController.Radius*2, soundController.Radius*2);
@@ -182,6 +184,8 @@ public class Listener : MonoBehaviour
         Color c = sound.Color;
         c.a = Mathf.Abs(1 - soundDistance / sound.ListenableDistance);
         indicators[sound.Id].GetComponent<RawImage>().material.SetColor("_Color", c);
+        indicators[sound.Id].GetComponent<RawImage>().material.SetFloat("_Distance", c.a);
+
         if (sound.Sprite != null)
         {
             Color cChild = indicators[sound.Id].transform.GetChild(0).GetComponent<RawImage>().color;
