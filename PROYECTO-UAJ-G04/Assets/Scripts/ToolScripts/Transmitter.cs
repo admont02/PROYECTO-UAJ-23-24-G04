@@ -23,8 +23,7 @@ public class Transmitter : MonoBehaviour
     [SerializeField]
     private float scaleIcon = 1.0f;
     private UInt64 m_id;
-    [SerializeField]
-    KeyCode key;
+    
 
     // Start is called before the first frame update
     void Start()
