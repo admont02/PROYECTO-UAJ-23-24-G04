@@ -140,13 +140,19 @@ public class Listener : MonoBehaviour
             // Damos valor a su imagen, tamaño y posición.
             childImage.texture = sound.Sprite.texture;
             rtransformChild.sizeDelta *= sound.SpriteFactor;
-            rtransformChild.localPosition = new Vector3((rtransform.sizeDelta.x / 2) - (rtransformChild.sizeDelta.x / 2), 0, 0);
+            rtransformChild.localPosition = new Vector3((rtransform.sizeDelta.x / 2) - (rtransformChild.sizeDelta.x / 2), 0, 0);//DUDA comprobar con varios como queda mejor visualmente
 
             // Para que las imágenes de los indicadores miren hacia el centro.
             rtransformChild.Rotate(0, 0, angle - 90);
         }
-
-
+        //El objeto esta a la dercha o esta justo arriba o justo abajo
+        if (angle == 0)
+        {
+            if (player.transform.position.x == sound.Position.x && player.transform.position.z == sound.Position.z)
+            {
+                angle = sound.Position.y > player.transform.position.y ? 90.0f : -90.0f;
+            }
+        }
         rtransform.Rotate(0, 0, angle);
 
         if (sound.Sprite != null)
@@ -173,6 +179,13 @@ public class Listener : MonoBehaviour
         float sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
         float cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
         rtransform.localPosition = new Vector3(cosinus * offset, sinus * offset, 0.0f);
+        if (angle == 0)
+        {
+            if (player.transform.position.x == sound.Position.x && player.transform.position.z == sound.Position.z)
+            {
+                angle = sound.Position.y > player.transform.position.y ? 90.0f : -90.0f;
+            }
+        }
         rtransform.Rotate(0, 0, angle);
         if (rtransformChild != null)
         {
