@@ -20,7 +20,7 @@ public class CanvasSoundController : MonoBehaviour
     private int radius;
     private void Awake()
     {
-        radius = Mathf.Min(Screen.currentResolution.width, Screen.currentResolution.height)/2;
+        radius = Mathf.Min(Screen.width, Screen.height) /2;
         radius=radius*circleSize/100;
         if (CanvasSoundController.instance == null)
         {
