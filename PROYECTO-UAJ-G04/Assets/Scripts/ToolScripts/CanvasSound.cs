@@ -42,11 +42,6 @@ public class CanvasSound
     private float m_SpriteFactor;
 
     /// <summary>
-    /// Distancia máxima a la que se puede escuchar sonido.
-    /// </summary>
-    private float m_maxDistance;
-
-    /// <summary>
     /// Identificador único del sonido.
     /// </summary>
     private UInt64 m_id;
@@ -55,7 +50,6 @@ public class CanvasSound
     /// Vibración del indicador.
     /// </summary>
     private float m_vibration;
-
 
     /// <summary>
     /// Constructor de la clase.
@@ -69,7 +63,7 @@ public class CanvasSound
     /// <param name="spriteFactor">Factor de escala del icono asociado al indicador.</param>
     /// <param name="maxDistance">Distancia máxima a la que se puede escuchar sonido.</param>
     /// <param name="id">Identificador único del sonido.</param>
-    public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenableDistance, Color color,float indicatorFactor, Sprite sprite, float spriteFactor, float maxDistance, UInt64 id,float vibration)
+    public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenableDistance, Color color, float indicatorFactor, Sprite sprite, float spriteFactor, UInt64 id, float vibration)
     {
         m_ObjectPosition = pos;
         m_RawImage = rawImage;
@@ -77,7 +71,6 @@ public class CanvasSound
         m_Color = color;
         m_Sprite = sprite;
         m_SpriteFactor = spriteFactor;
-        m_maxDistance = maxDistance;
         m_id = id;
         m_IndicatorFactor = indicatorFactor;
         m_vibration = vibration;
@@ -128,21 +121,17 @@ public class CanvasSound
         set { m_SpriteFactor = value; }
     }
 
-    public float MaxDistance
-    {
-        get { return m_maxDistance; }
-        set { m_maxDistance=value; }
-    }
-
     public UInt64 Id
     {
         get { return m_id; }
         set { m_id = value; }
     }
+
     public float IndicatorFactor
     {
         get { return m_IndicatorFactor; }
     }
+
     public float Vibration
     {
         get { return m_vibration; }
