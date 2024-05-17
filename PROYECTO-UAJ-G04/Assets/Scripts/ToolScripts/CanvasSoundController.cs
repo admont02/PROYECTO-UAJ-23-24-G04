@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class CanvasSoundController : MonoBehaviour
 {
-    [SerializeField]
-    GameObject canvasCirclePos;
+    /// <summary>
+    /// Estancia singleton del controlador.
+    /// </summary>
     public static CanvasSoundController instance;
+    
     private Queue<CanvasSound> _sounds = new Queue<CanvasSound>();
     private Dictionary<UInt64,GameObject> _indicators = new Dictionary<UInt64,GameObject>();
     private Queue<UInt64> _indicatorsToDestroy = new Queue<UInt64>();
@@ -15,8 +17,6 @@ public class CanvasSoundController : MonoBehaviour
     [SerializeField]
     [Range(1, 100)]
     int circleSize = 50;
-    [SerializeField]
-    Transform receptorTransform;
     private int radius;
     private void Awake()
     {
@@ -58,7 +58,6 @@ public class CanvasSoundController : MonoBehaviour
         _sounds.Enqueue(cSound);
     }
     public Queue<CanvasSound> Sounds { get { return _sounds; } }
-    public GameObject CanvasCircleParent { get { return canvasCirclePos; } }
     public Dictionary<UInt64, GameObject> Indicators { get { return _indicators; } }
 
     public void AddIndicator(UInt64 id,GameObject go)
@@ -66,7 +65,7 @@ public class CanvasSoundController : MonoBehaviour
         _indicators.Add(id,go);
         GameObject current = go;
         Vector3 aux = current.GetComponent<RectTransform>().localPosition;
-        current.transform.SetParent(canvasCirclePos.transform);
+        current.transform.SetParent(transform);
         current.transform.localPosition = aux;
         current.SetActive(true);
     }
