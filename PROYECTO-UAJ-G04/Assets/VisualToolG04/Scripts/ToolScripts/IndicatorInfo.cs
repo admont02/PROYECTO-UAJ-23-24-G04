@@ -27,10 +27,12 @@ public class IndicatorInfo
     /// Color del indicador del sonido.
     /// </summary>
     private Color m_Color;
+
     /// <summary>
     /// Factor por el que se multiplicará el standardSize del indicador
     /// </summary>
     private float m_IndicatorFactor;
+
     /// <summary>
     /// Icono asociado al indicador del sonido.
     /// </summary>
@@ -42,7 +44,7 @@ public class IndicatorInfo
     private float m_SpriteFactor;
 
     /// <summary>
-    /// Identificador único del sonido.
+    /// ID del indicador.
     /// </summary>
     private UInt64 m_id;
 

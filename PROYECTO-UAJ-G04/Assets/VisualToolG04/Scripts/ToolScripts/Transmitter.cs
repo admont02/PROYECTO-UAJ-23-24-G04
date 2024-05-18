@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Clase que transmite la información del sonido desde un objeto en el juego al controlador de los indicadores.
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class Transmitter : MonoBehaviour
 {
@@ -20,12 +23,12 @@ public class Transmitter : MonoBehaviour
     float listenableDistance = 10.0f;
 
     /// <summary>
-    /// Instancia que contiene la información del indicador
+    /// Instancia que contiene la información del indicador.
     /// </summary>
     IndicatorInfo indicator;
 
     /// <summary>
-    /// 
+    /// Instancia del controlador de los indicadores.
     /// </summary>
     IndicatorController indicatorController;
 
@@ -59,7 +62,7 @@ public class Transmitter : MonoBehaviour
     private float scaleIcon = 1.0f;
 
     /// <summary>
-    /// Identificador único para el sonido.
+    /// ID del indicador.
     /// </summary>
     private UInt64 m_id;
 
@@ -103,7 +106,7 @@ public class Transmitter : MonoBehaviour
     }
 
     /// <summary>
-    /// Envía un evento de sonido al controlador de sonido del canvas.
+    /// Envía un evento de sonido al controlador de indicadores.
     /// </summary>
     void SendEvent()
     {

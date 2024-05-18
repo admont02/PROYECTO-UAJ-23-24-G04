@@ -29,7 +29,7 @@ public class IndicatorController : MonoBehaviour
     private Queue<UInt64> _indicatorsToDestroy = new Queue<UInt64>();
 
     /// <summary>
-    /// Contador del número de indicadores.
+    /// ID del indicador.
     /// </summary>
     private UInt64 m_id;
 
