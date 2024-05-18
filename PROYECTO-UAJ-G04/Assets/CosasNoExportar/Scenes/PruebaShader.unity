@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7991011fd1adba240bebaf163386f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleSize: 100
+  circleSize: 91
 --- !u!1 &933900273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,11 +1050,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
-  listenableDistance: 30
-  shaderColor: {r: 0.764151, g: 0.08545558, b: 0, a: 1}
+  listenableDistance: 10
+  shaderColor: {r: 1, g: 0, b: 0, a: 1}
   scaleIndicator: 1
-  icon: {fileID: 0}
-  scaleIcon: 1
+  icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
+  scaleIcon: 0.5
   vibration: 15
 --- !u!1 &1660938601
 GameObject:
@@ -1170,8 +1170,8 @@ GameObject:
   - component: {fileID: 1709964934}
   - component: {fileID: 1709964933}
   - component: {fileID: 1709964932}
-  - component: {fileID: 1709964931}
   - component: {fileID: 1709964930}
+  - component: {fileID: 1709964936}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1275,25 +1275,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1709964931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709964929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb81eb7f3ce4ea4e8c7541546b4a5a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
-  listenableDistance: 20
-  shaderColor: {r: 0.0917798, g: 0.8584906, b: 0.07694017, a: 1}
-  scaleIndicator: 1
-  icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
-  scaleIcon: 2
-  vibration: 67
 --- !u!65 &1709964932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1380,6 +1361,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709964936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709964929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb81eb7f3ce4ea4e8c7541546b4a5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
+  listenableDistance: 10
+  shaderColor: {r: 1, g: 0, b: 0, a: 1}
+  scaleIndicator: 1
+  icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
+  scaleIcon: 0.25
+  vibration: 15
 --- !u!1 &1767622615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,8 +1392,8 @@ GameObject:
   - component: {fileID: 1767622620}
   - component: {fileID: 1767622619}
   - component: {fileID: 1767622618}
-  - component: {fileID: 1767622617}
   - component: {fileID: 1767622616}
+  - component: {fileID: 1767622622}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -1497,25 +1497,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1767622617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767622615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb81eb7f3ce4ea4e8c7541546b4a5a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
-  listenableDistance: 20
-  shaderColor: {r: 0, g: 0.150808, b: 0.9716981, a: 1}
-  scaleIndicator: 1
-  icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
-  scaleIcon: 1
-  vibration: 15
 --- !u!65 &1767622618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1602,6 +1583,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767622622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767622615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb81eb7f3ce4ea4e8c7541546b4a5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
+  listenableDistance: 10
+  shaderColor: {r: 1, g: 0, b: 0, a: 1}
+  scaleIndicator: 1
+  icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
+  scaleIcon: 1
+  vibration: 15
 --- !u!1 &2109066332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,8 +1738,8 @@ GameObject:
   - component: {fileID: 2147427578}
   - component: {fileID: 2147427577}
   - component: {fileID: 2147427576}
-  - component: {fileID: 2147427575}
   - component: {fileID: 2147427574}
+  - component: {fileID: 2147427580}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -1843,25 +1843,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2147427575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147427573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb81eb7f3ce4ea4e8c7541546b4a5a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
-  listenableDistance: 20
-  shaderColor: {r: 0.8875311, g: 0.972549, b: 0, a: 1}
-  scaleIndicator: 1
-  icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
-  scaleIcon: 0.75
-  vibration: 5
 --- !u!65 &2147427576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1948,6 +1929,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2147427580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147427573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb81eb7f3ce4ea4e8c7541546b4a5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 8931929457397822688, guid: fae3a7f4d1381f5419b8939272363c43, type: 3}
+  listenableDistance: 10
+  shaderColor: {r: 1, g: 0, b: 0, a: 1}
+  scaleIndicator: 1
+  icon: {fileID: 21300000, guid: 08fc879733c86684096d277d1815789d, type: 3}
+  scaleIcon: 1.5
+  vibration: 15
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

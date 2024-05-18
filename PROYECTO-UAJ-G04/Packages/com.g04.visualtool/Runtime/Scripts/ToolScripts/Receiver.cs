@@ -40,7 +40,7 @@ public class Receiver : MonoBehaviour
     }
 
     /// <summary>
-    /// Realiza los cálculos espaciales necesarios para que aparezcan/desaparezcan los indicadores y hace las llamadas a los métodos correspondientes.
+    /// Realiza los cï¿½lculos espaciales necesarios para que aparezcan/desaparezcan los indicadores y hace las llamadas a los mï¿½todos correspondientes.
     /// </summary>
     void Update()
     {
@@ -63,27 +63,27 @@ public class Receiver : MonoBehaviour
             float soundDistance = Mathf.Sqrt(Mathf.Pow((soundPos.x - player.transform.position.x), 2) + Mathf.Pow((soundPos.z - player.transform.position.z), 2));
             float angle = CalculateAngle(player.transform, sound.Position);
 
-            // Condición de DISTANCIA. Comprueba que el sonido se encuentra en la vecindad.
+            // Condiciï¿½n de DISTANCIA. Comprueba que el sonido se encuentra en la vecindad.
             if (soundDistance <= sound.ListenableDistance)
             {
-                // Si el indicador no está siendo gestionado ya, se crea.
+                // Si el indicador no estï¿½ siendo gestionado ya, se crea.
                 if (!indicators.ContainsKey(sound.Id))
                 {
                     CreateIndicator(sound, soundDistance, angle);
                 }
-                // Si está ya creado, se actualiza.
+                // Si estï¿½ ya creado, se actualiza.
                 else
                 {
                     UpdateIndicator(indicators, sound, soundDistance, angle);
                 }
             }
-            // Si el sonido NO está en la vecindad.
+            // Si el sonido NO estï¿½ en la vecindad.
             else
             {
-                // Se comprueba si el sonido está siendo gestionado ya.
+                // Se comprueba si el sonido estï¿½ siendo gestionado ya.
                 if (indicators.ContainsKey(sound.Id))
                 {
-                    // En cuyo caso, no se añade a stopSounds para evitar procesarlos dos veces.
+                    // En cuyo caso, no se aï¿½ade a stopSounds para evitar procesarlos dos veces.
                     soundController.RemoveIndicator(sound.Id);
                 }
             }
@@ -91,10 +91,10 @@ public class Receiver : MonoBehaviour
         // Para CADA sonido dentro del DICCIONARIO.
         foreach (KeyValuePair<UInt64,GameObject> par in indicators)
         {
-            // En caso de que el id del sonido NO esté en la cola de emisión.
+            // En caso de que el id del sonido NO estï¿½ en la cola de emisiï¿½n.
             if (!sendSound.Contains(par.Key))
             {
-                // Se añade a la cola de sonidos a pararse (no se elimina aquí para evitar problemas de eliminación en medio del recorrido).
+                // Se aï¿½ade a la cola de sonidos a pararse (no se elimina aquï¿½ para evitar problemas de eliminaciï¿½n en medio del recorrido).
                 stopSounds.Enqueue(par.Key);
             }
         }
@@ -106,7 +106,7 @@ public class Receiver : MonoBehaviour
     }
 
     /// <summary>
-    /// Calcula el ángulo que existe en el plano X, Z entre el receptor y el emisor de los sonidos.
+    /// Calcula el ï¿½ngulo que existe en el plano X, Z entre el receptor y el emisor de los sonidos.
     /// </summary>
     /// <param name="playerTransform">Transform del jugador (receptor de los sonidos).</param>
     /// <param name="objectPosition">Vector3 del objeto (emisor del sonido).</param>
@@ -116,22 +116,22 @@ public class Receiver : MonoBehaviour
         Vector3 playerPosition = new Vector3(playerTransform.position.x, 0f, playerTransform.position.z);
         Vector3 otherPosition = new Vector3(objectPosition.x, 0f, objectPosition.z);
 
-        // Se calcula la resta de vectores para obtener su dirección.
+        // Se calcula la resta de vectores para obtener su direcciï¿½n.
         Vector3 directionToOther = otherPosition - playerPosition;
         Vector2 r = new Vector2(player.transform.right.x, player.transform.right.z);
 
-        // Se calcula el ángulo.
+        // Se calcula el ï¿½ngulo.
         float angle = Vector2.SignedAngle(r, new Vector2(directionToOther.x, directionToOther.z));
         angle = (float)Math.Round(angle, 3);
         return angle;
     }
 
     /// <summary>
-    /// Crea el indicador asociado al sonido que se está emitiendo.
+    /// Crea el indicador asociado al sonido que se estï¿½ emitiendo.
     /// </summary>
-    /// <param name="sound">Información del indicador que está asociado al sonido.</param>
+    /// <param name="sound">Informaciï¿½n del indicador que estï¿½ asociado al sonido.</param>
     /// <param name="soundDistance">Distancia a la que el sonido se encuentra del jugador.</param>
-    /// <param name="angle">Ángulo que existe entre el receptor y el emisor.</param>
+    /// <param name="angle">ï¿½ngulo que existe entre el receptor y el emisor.</param>
     private void CreateIndicator(IndicatorInfo sound, float soundDistance, float angle)
     {
         // Creamos el GameObject del indicador solicitado.
@@ -159,11 +159,11 @@ public class Receiver : MonoBehaviour
         // Establecemos el material.
         rImage.material = nMaterial;
 
-        // Establecemos el tamaño.
+        // Establecemos el tamaï¿½o.
         rtransform.sizeDelta= new Vector2(soundController.Radius*2, soundController.Radius*2);
         rtransform.sizeDelta *= sound.IndicatorFactor;
 
-        // Calculamos la posición en el canvas del indicador teniendo en cuenta el ángulo.
+        // Calculamos la posiciï¿½n en el canvas del indicador teniendo en cuenta el ï¿½ngulo.
         float sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
         float cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
         float offset = soundController.Radius - soundController.Radius * sound.IndicatorFactor;
@@ -172,28 +172,28 @@ public class Receiver : MonoBehaviour
         // En caso de que el indicador presente IMAGEN.
         if (sound.Sprite != null)
         {
-            // Creamos el GameObject para la imagen que tendrá el indicador.
+            // Creamos el GameObject para la imagen que tendrï¿½ el indicador.
             GameObject child = new GameObject("Icon");
 
             // Lo emparaentamos al indicador.
             child.transform.SetParent(nIndicator.transform);
 
-            // Añadimos componentes de RectTransform y RawImage propios de elementos de UI.
+            // Aï¿½adimos componentes de RectTransform y RawImage propios de elementos de UI.
             RectTransform rtransformChild = child.AddComponent<RectTransform>();
             RawImage childImage = child.AddComponent<RawImage>();
 
-            // Damos valor a su imagen, tamaño y posición.
+            // Damos valor a su imagen, tamaï¿½o y posiciï¿½n.
             childImage.texture = sound.Sprite.texture;
             rtransformChild.sizeDelta *= sound.SpriteFactor;
-            rtransformChild.localPosition = new Vector3((rtransform.sizeDelta.x / 2) - (rtransformChild.sizeDelta.x / 2), 0, 0);//DUDA comprobar con varios como queda mejor visualmente
+            rtransformChild.localPosition = new Vector3((rtransform.sizeDelta.x / 2), 0, 0);
 
-            // Para que las imágenes de los indicadores miren hacia el centro.
+            // Para que las imï¿½genes de los indicadores miren hacia el centro.
             rtransformChild.Rotate(0, 0, angle - 90);
         }
-        // Si el objeto está a la derecha O está justo arriba O está justo abajo.
+        // Si el objeto estï¿½ a la derecha O estï¿½ justo arriba O estï¿½ justo abajo.
         if (angle == 0)
         {
-            // Corregimos el ángulo.
+            // Corregimos el ï¿½ngulo.
             if (player.transform.position.x == sound.Position.x && player.transform.position.z == sound.Position.z)
             {
                 angle = sound.Position.y > player.transform.position.y ? 90.0f : -90.0f;
@@ -212,37 +212,37 @@ public class Receiver : MonoBehaviour
         // Activamos el GameObject del indicador.
         nIndicator.SetActive(true);
 
-        // Añadimos el indicador al diccionario ordenado de indicadores.
+        // Aï¿½adimos el indicador al diccionario ordenado de indicadores.
         soundController.AddIndicator(sound.Id, nIndicator);
     }
 
     /// <summary>
-    /// Actualiza los indicadores como corresponde: su posición, su tamaño y su opacidad.
+    /// Actualiza los indicadores como corresponde: su posiciï¿½n, su tamaï¿½o y su opacidad.
     /// </summary>
     /// <param name="indicators">Diccionario que contiene los indicadores ordenados.</param>
-    /// <param name="sound">Información del indicador asociado al sonido que se está emitiendo.</param>
+    /// <param name="sound">Informaciï¿½n del indicador asociado al sonido que se estï¿½ emitiendo.</param>
     /// <param name="soundDistance">Distancia entre el sonido y el jugador.</param>
-    /// <param name="angle">Ángulo que existe entre el receptor y el emisor.</param>
+    /// <param name="angle">ï¿½ngulo que existe entre el receptor y el emisor.</param>
     private void UpdateIndicator(Dictionary<UInt64, GameObject> indicators, IndicatorInfo sound, float soundDistance, float angle)
     {
         // Activamos el indicador solicitado.
         indicators[sound.Id].SetActive(true);
 
-        // Reestablecemos la rotación.
+        // Reestablecemos la rotaciï¿½n.
         RectTransform rtransform = indicators[sound.Id].GetComponent<RectTransform>();
         RectTransform rtransformChild = indicators[sound.Id].GetComponentInChildren<RectTransform>();
         rtransform.transform.rotation = new Quaternion(0, 0, 0, 0);
 
-        // Calculamos su posición en el canvas teniendo en cuenta la circunferencia.
+        // Calculamos su posiciï¿½n en el canvas teniendo en cuenta la circunferencia.
         float offset = (soundController.Radius - soundController.Radius * sound.IndicatorFactor)/2;
         float sinus = Mathf.Sin((float)angle * Mathf.Deg2Rad);
         float cosinus = Mathf.Cos((float)angle * Mathf.Deg2Rad);
         rtransform.localPosition = new Vector3(cosinus * offset, sinus * offset, 0.0f);
 
-        // Si el objeto está a la derecha O está justo arriba O está justo abajo.
+        // Si el objeto estï¿½ a la derecha O estï¿½ justo arriba O estï¿½ justo abajo.
         if (angle == 0)
         {
-            // Corregimos el ángulo.
+            // Corregimos el ï¿½ngulo.
             if (player.transform.position.x == sound.Position.x && player.transform.position.z == sound.Position.z)
             {
                 angle = sound.Position.y > player.transform.position.y ? 90.0f : -90.0f;

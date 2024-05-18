@@ -1,0 +1,10 @@
+{
+    "name": "com.g04.visualtool",
+    "version": "1.0.0",
+    "displayName": "Visual Tool",
+    "description": "Paquete que implementa un herramienta visual para ayudar a gente con problemas auditivos",
+    "unity": "2022.3",
+    "dependencies": {
+      "com.unity.render-pipelines.universal": "14.0.8"
+    }
+  }

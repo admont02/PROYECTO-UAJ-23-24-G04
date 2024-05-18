@@ -1,4 +1,4 @@
-Shader "Shader Graphs/ringShader"
+Shader "Shader Graphs/inidicatorShader"
 {
     Properties
     {
