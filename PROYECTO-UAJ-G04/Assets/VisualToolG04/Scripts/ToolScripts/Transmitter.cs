@@ -10,7 +10,7 @@ public class Transmitter : MonoBehaviour
     [SerializeField]
     UnityEngine.UI.RawImage image;
     [SerializeField]
-    float listenableDistance;
+    float listenableDistance = 10.0f;
     IndicatorInfo sound;
     IndicatorController soundController;
     AudioSource audioSource;
