@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(AudioListener))]
-public class Listener : MonoBehaviour
+public class Receiver : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
@@ -38,7 +38,7 @@ public class Listener : MonoBehaviour
         Dictionary<UInt64, GameObject> indicators = soundController.Indicators;
         while (soundController.Sounds.Count > 0)
         {
-            CanvasSound sound = soundController.Sounds.Dequeue();
+            IndicatorInfo sound = soundController.Sounds.Dequeue();
             sendSound.Enqueue(sound.Id);
             Vector3 soundPos = sound.Position;
             // Despreciamos la y
@@ -95,7 +95,7 @@ public class Listener : MonoBehaviour
         angle = (float)Math.Round(angle, 3);
         return angle;
     }
-    private void CreateIndicator(CanvasSound sound, float soundDistance, float angle)
+    private void CreateIndicator(IndicatorInfo sound, float soundDistance, float angle)
     {
         GameObject nIndicator = new GameObject(sound.Id.ToString());
         // Creamos los componentes de RectTransform y RawImage propios de elementos de UI.
@@ -145,7 +145,7 @@ public class Listener : MonoBehaviour
             // Para que las imágenes de los indicadores miren hacia el centro.
             rtransformChild.Rotate(0, 0, angle - 90);
         }
-        //El objeto esta a la dercha o esta justo arriba o justo abajo
+        //El objeto esta a la derecha o esta justo arriba o justo abajo
         if (angle == 0)
         {
             if (player.transform.position.x == sound.Position.x && player.transform.position.z == sound.Position.z)
@@ -167,7 +167,7 @@ public class Listener : MonoBehaviour
 
     }
 
-    private void UpdateIndicator(Dictionary<UInt64, GameObject> indicators, CanvasSound sound, float soundDistance, float angle)
+    private void UpdateIndicator(Dictionary<UInt64, GameObject> indicators, IndicatorInfo sound, float soundDistance, float angle)
     {
         indicators[sound.Id].SetActive(true);
 

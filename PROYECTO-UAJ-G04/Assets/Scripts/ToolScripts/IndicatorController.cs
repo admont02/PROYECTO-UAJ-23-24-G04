@@ -10,7 +10,7 @@ public class IndicatorController : MonoBehaviour
     /// </summary>
     public static IndicatorController instance;
     
-    private Queue<CanvasSound> _sounds = new Queue<CanvasSound>();
+    private Queue<IndicatorInfo> _sounds = new Queue<IndicatorInfo>();
     private Dictionary<UInt64,GameObject> _indicators = new Dictionary<UInt64,GameObject>();
     private Queue<UInt64> _indicatorsToDestroy = new Queue<UInt64>();
     private UInt64 m_id;
@@ -43,11 +43,11 @@ public class IndicatorController : MonoBehaviour
         _indicatorsToDestroy.Clear();
     }
 
-    public void ReceiveEvent(CanvasSound cSound)
+    public void ReceiveEvent(IndicatorInfo cSound)
     {
         _sounds.Enqueue(cSound);
     }
-    public Queue<CanvasSound> Sounds { get { return _sounds; } }
+    public Queue<IndicatorInfo> Sounds { get { return _sounds; } }
     public Dictionary<UInt64, GameObject> Indicators { get { return _indicators; } }
 
     public void AddIndicator(UInt64 id,GameObject go)

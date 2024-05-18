@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Clase que representa un sonido en el canvas.
+/// Clase que contiene la información de un indicador.
 /// </summary>
-public class CanvasSound 
+public class IndicatorInfo 
 {
     /// <summary>
     /// Posición del sonido en el mundo de juego.
@@ -63,7 +63,7 @@ public class CanvasSound
     /// <param name="spriteFactor">Factor de escala del icono asociado al indicador.</param>
     /// <param name="maxDistance">Distancia máxima a la que se puede escuchar sonido.</param>
     /// <param name="id">Identificador único del sonido.</param>
-    public CanvasSound(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenableDistance, Color color, float indicatorFactor, Sprite sprite, float spriteFactor, UInt64 id, float vibration)
+    public IndicatorInfo(Vector3 pos, UnityEngine.UI.RawImage rawImage, float listenableDistance, Color color, float indicatorFactor, Sprite sprite, float spriteFactor, UInt64 id, float vibration)
     {
         m_ObjectPosition = pos;
         m_RawImage = rawImage;
@@ -79,7 +79,7 @@ public class CanvasSound
     /// <summary>
     /// Constructor vacío de la clase.
     /// </summary>
-    public CanvasSound()
+    public IndicatorInfo()
     {
         m_RawImage = null;
         m_ObjectPosition = Vector3.zero;

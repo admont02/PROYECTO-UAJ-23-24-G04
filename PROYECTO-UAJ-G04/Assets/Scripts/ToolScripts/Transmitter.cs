@@ -11,7 +11,7 @@ public class Transmitter : MonoBehaviour
     UnityEngine.UI.RawImage image;
     [SerializeField]
     float listenableDistance;
-    CanvasSound sound;
+    IndicatorInfo sound;
     IndicatorController soundController;
     AudioSource audioSource;
     [SerializeField]
@@ -33,7 +33,7 @@ public class Transmitter : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         m_id = IndicatorController.instance.AskForID();
         print(gameObject.name+ m_id);
-        sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor, scaleIndicator, icon, scaleIcon, m_id, vibration);
+        sound = new IndicatorInfo(transform.position, image, listenableDistance, shaderColor, scaleIndicator, icon, scaleIcon, m_id, vibration);
         if ((soundController = IndicatorController.instance) == null)
         {
             Debug.LogError("No hay CanvasSoundController");
