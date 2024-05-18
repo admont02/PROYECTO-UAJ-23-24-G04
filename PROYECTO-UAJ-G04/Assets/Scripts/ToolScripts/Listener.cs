@@ -11,13 +11,13 @@ public class Listener : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-    CanvasSoundController soundController;
+    IndicatorController soundController;
 
     //private Dictionary<UInt64, GameObject> indicators;
     // Start is called before the first frame update
     void Start()
     {
-        if ((soundController = CanvasSoundController.instance) == null)
+        if ((soundController = IndicatorController.instance) == null)
         {
             Debug.LogError("No hay CanvasSoundController");
         }

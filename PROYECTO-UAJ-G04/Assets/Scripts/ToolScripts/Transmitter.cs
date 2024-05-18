@@ -12,7 +12,7 @@ public class Transmitter : MonoBehaviour
     [SerializeField]
     float listenableDistance;
     CanvasSound sound;
-    CanvasSoundController soundController;
+    IndicatorController soundController;
     AudioSource audioSource;
     [SerializeField]
     Color shaderColor;
@@ -31,10 +31,10 @@ public class Transmitter : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        m_id = CanvasSoundController.instance.AskForID();
+        m_id = IndicatorController.instance.AskForID();
         print(gameObject.name+ m_id);
         sound = new CanvasSound(transform.position, image, listenableDistance, shaderColor, scaleIndicator, icon, scaleIcon, m_id, vibration);
-        if ((soundController = CanvasSoundController.instance) == null)
+        if ((soundController = IndicatorController.instance) == null)
         {
             Debug.LogError("No hay CanvasSoundController");
         }

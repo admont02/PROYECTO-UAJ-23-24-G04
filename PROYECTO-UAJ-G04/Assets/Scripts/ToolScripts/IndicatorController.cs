@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanvasSoundController : MonoBehaviour
+public class IndicatorController : MonoBehaviour
 {
     /// <summary>
     /// Estancia singleton del controlador.
     /// </summary>
-    public static CanvasSoundController instance;
+    public static IndicatorController instance;
     
     private Queue<CanvasSound> _sounds = new Queue<CanvasSound>();
     private Dictionary<UInt64,GameObject> _indicators = new Dictionary<UInt64,GameObject>();
@@ -22,25 +22,15 @@ public class CanvasSoundController : MonoBehaviour
     {
         radius = Mathf.Min(Screen.width, Screen.height) /2;
         radius=radius*circleSize/100;
-        if (CanvasSoundController.instance == null)
+        if (IndicatorController.instance == null)
         {
             instance = this;
             m_id = 0;
         }
         else
-            Debug.LogError("Hay más de un CanvasSoundController");
+            Debug.LogError("Hay más de un IndicatorController");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //StartCoroutine(Looping());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
     private void LateUpdate()
     {
         foreach(UInt64 key in _indicatorsToDestroy)
