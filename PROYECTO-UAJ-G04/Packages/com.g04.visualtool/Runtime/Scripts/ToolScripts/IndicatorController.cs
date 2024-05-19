@@ -88,10 +88,10 @@ public class IndicatorController : MonoBehaviour
             sendSound.Enqueue(sound.Id);
             Vector3 soundPos = sound.Position;
 
-            // Despreciamos el eje Y.
-            float soundDistance = Mathf.Sqrt(Mathf.Pow((soundPos.x - player.position.x), 2) + Mathf.Pow((soundPos.z - player.position.z), 2));
+            // Calculamos la distancia y el ángulo.
+            float soundDistance = Vector3.Distance(soundPos, player.position);
             float angle = CalculateAngle(player, sound.Position);
-
+             
             // Condición de DISTANCIA. Comprueba que el sonido se encuentra en la vecindad.
             if (soundDistance <= sound.ListenableDistance)
             {
