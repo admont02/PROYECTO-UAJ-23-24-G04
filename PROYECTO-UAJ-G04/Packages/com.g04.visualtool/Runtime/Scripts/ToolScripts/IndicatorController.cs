@@ -134,4 +134,25 @@ public class IndicatorController : MonoBehaviour
     {
         get { return radius; }
     }
+
+
+    /// <summary>
+    /// Limpiar pantalla de todos los indicadores
+    /// </summary>
+    public void ClearAll()
+    {
+        Queue<UInt64> aux = new Queue<UInt64>();
+        foreach (KeyValuePair<UInt64, GameObject> gO in _indicators)
+        {
+            aux.Enqueue(gO.Key);
+        }
+        foreach (UInt64 i in aux)
+        {
+            GameObject go = _indicators[i];
+            _indicators.Remove(i);
+            Destroy(go);
+
+        }
+        aux.Clear();
+    }
 }
