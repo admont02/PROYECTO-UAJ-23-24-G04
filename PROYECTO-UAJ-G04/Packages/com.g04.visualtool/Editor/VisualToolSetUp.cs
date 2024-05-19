@@ -12,19 +12,28 @@ public class VisualToolSetUp
     private static bool executed=false;
     static VisualToolSetUp()
     {
-        Debug.Log("ME LLAMO PERO NO HAGO NA");
-        LoadConfig();
-        if (!executed)
-        {
-            Debug.Log("Hola me he ejecutado al cargarme");
-            SetRenderPipeline();
-            System.Threading.Thread.Sleep(5000);
-            FixGlobalSettings();
-            // PipeLineConverter();
-            executed=true;
-            SaveConfig();
-        }
+        EditorApplication.update += Initialize;
+    }
+    private static void Initialize(){
 
+        if (!EditorApplication.isPlayingOrWillChangePlaymode && !EditorApplication.isCompiling)
+        {
+            LoadConfig();
+
+            if (!executed)
+            {
+
+                SetRenderPipeline();
+                //Espera unos 10 segundos para aseg
+                System.Threading.Thread.Sleep(5000);
+                FixGlobalSettings();
+                // PipeLineConverter();
+                executed=true;
+                SaveConfig();
+            }
+            EditorApplication.update -= Initialize;
+
+        }
     }
     private static void SetRenderPipeline()
     {
@@ -37,12 +46,11 @@ public class VisualToolSetUp
             return;
         }
         GraphicsSettings.renderPipelineAsset = pipelineAsset;
-        Debug.Log("Render Pipeline changed successfully!");
+
     }
     [MenuItem("Custom/Open Graphics Settings")]
     private static void FixGlobalSettings()
     {
-        Debug.Log("SE LLAMA");
         SettingsService.OpenProjectSettings("Project/Graphics/URP Global Settings");
         System.Threading.Thread.Sleep(1000);
     }
