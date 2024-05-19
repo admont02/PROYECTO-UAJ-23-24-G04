@@ -3,11 +3,15 @@
 Será el encargado de gestionar los indicadores, lo primero que hace es asegurarse de que solo existe uno en la escena. Luego durante el transcurso del juego se encargará de crear, actualizar y eliminar los indicadores.
 
 
-## Valores del editor
+## Valores editables
 
-Circle Size (int Range(1,100)): Hace referencia al porcentaje de pantalla que se desea que ocupen los indicadores.
+* **int Range(1,100)** *Circle Size* 
 
-Player (Transform): Referencia a la posicion del objeto que desea saber en que direccion se encuentran los sonidos  
+ Hace referencia al porcentaje de pantalla que se desea que ocupen los indicadores.
+
+* **Transform** *Player* 
+
+ Referencia a la posicion del objeto que desea saber en que direccion se encuentran los sonidos  
 
 ## Métodos públicos
 
@@ -20,7 +24,7 @@ Gestiona la ID del indicador y garantiza que no haya dos iguales siempre y cuand
 ```c
 UInt64 
 ```
-### ClearAll()
+## ClearAll()
 ##### Descripción
 ---
 Se encargá de borrar todos los indicadores que existen actualmente.
@@ -32,12 +36,12 @@ void
 ```
 
 ### ReceiveSound(IndicatorInfo cSound)
-##### Descripción
+#### Descripción
 ---
 Añade el sonido a la cola de sonidos que se deben procesar en el próximo ciclo
 #### Parámetros
 ---
-[IndicatorInfo](./IndicatorInfo.md) cSound debe contener la informacion del indicador 
+[IndicatorInfo](./IndicatorInfo.md) ***cSound*** debe contener la informacion del indicador 
 #### Devuelve
 ---
 ```c#
@@ -45,14 +49,18 @@ void
 ```
 
 ### AddIndicator(UInt64 id,GameObject go)
-##### Descripción
+#### Descripción
 ---
 Añade un indicador seteando su padre y lo activa en la escena
 #### Parámetros
 ---
-UInt64 id, Id del indicador que se desea generar debe haberse pedido antes mediante AskForID() a este script, si no se hace puede darse que dos Indicadores tengan la misma ID lo que derivaría en un fallo en ejecucción.
+* **UInt64** *id* 
 
-go El gameobject que representa el indicador.
+Id del indicador que se desea generar debe haberse pedido antes mediante AskForID() a este script, si no se hace puede darse que dos Indicadores tengan la misma ID lo que derivaría en un fallo en ejecucción.
+
+* **GameObject** *go* 
+
+El gameobject que representa el indicador.
 #### Devuelve
 ---
 ```c#
@@ -60,12 +68,12 @@ void
 ```
 
 ### RemoveIndicartor(UInt64 id)
-##### Descripción
+#### Descripción
 ---
 Se encargá de borrar todos los indicadores que existen actualmente.
 #### Parámetros
 ---
-UInt64 id añade el indicador cuya id coincide a la lista de indicadores a eliminar
+**UInt64** ***id*** añade el indicador cuya id coincide a la lista de indicadores a eliminar
 #### Devuelve
 ---
 ```c#

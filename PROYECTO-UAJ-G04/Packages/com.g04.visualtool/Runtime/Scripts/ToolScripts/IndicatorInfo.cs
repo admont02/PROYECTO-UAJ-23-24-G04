@@ -17,45 +17,86 @@ public class IndicatorInfo
         get { return m_ObjectPosition; }
         set { m_ObjectPosition = value; }
     }
+
+    private UnityEngine.UI.RawImage m_RawImage;
     /// <summary>
     /// Textura del indicador que tiene asociado un material.
     /// </summary>
-    private UnityEngine.UI.RawImage m_RawImage;
+    public UnityEngine.UI.RawImage RawImage
+    {
+        get { return m_RawImage; }
+        set { m_RawImage = value; }
+    }
 
+    private float m_ListenableDistance;
     /// <summary>
     /// Distancia a la que se puede escuchar el sonido.
     /// </summary>
-    private float m_ListenableDistance;
+    public float ListenableDistance
+    {
+        get { return m_ListenableDistance; }
+        set { m_ListenableDistance = value; }
+    }
 
+    private Color m_Color;
     /// <summary>
     /// Color del indicador del sonido.
     /// </summary>
-    private Color m_Color;
+    public Color Color
+    {
+        get { return m_Color; }
+        set { m_Color = value; }
+    }
 
+    private float m_IndicatorFactor;
     /// <summary>
     /// Factor por el que se multiplicará el standardSize del indicador
     /// </summary>
-    private float m_IndicatorFactor;
+    public float IndicatorFactor
+    {
+        get { return m_IndicatorFactor; }
+        set { m_IndicatorFactor = value; }
+    }
 
+    private Sprite m_Sprite;
     /// <summary>
     /// Icono asociado al indicador del sonido.
     /// </summary>
-    private Sprite m_Sprite;
+    public Sprite Sprite
+    {
+        get { return m_Sprite; }
+        set { m_Sprite = value; }
+    }
 
+    private float m_SpriteFactor;
     /// <summary>
     /// Factor de escala del icono asociado al indicador.
     /// </summary>
-    private float m_SpriteFactor;
+    public float SpriteFactor
+    {
+        get { return m_SpriteFactor; }
+        set { m_SpriteFactor = value; }
+    }
 
+    private UInt64 m_id;
     /// <summary>
     /// ID del indicador.
     /// </summary>
-    private UInt64 m_id;
+    public UInt64 Id
+    {
+        get { return m_id; }
+        set { m_id = value; }
+    }
 
+    private float m_vibration;
     /// <summary>
     /// Vibración del indicador.
     /// </summary>
-    private float m_vibration;
+    public float Vibration
+    {
+        get { return m_vibration; }
+        set { m_vibration = value; }
+    }
 
     /// <summary>
     /// Constructor de la clase.
@@ -89,55 +130,5 @@ public class IndicatorInfo
     {
         m_RawImage = null;
         m_ObjectPosition = Vector3.zero;
-    }
-
-
-
-    public UnityEngine.UI.RawImage RawImage
-    {
-        get { return m_RawImage; }
-        set { m_RawImage = value; }
-    }
-
-    public float ListenableDistance
-    {
-        get { return m_ListenableDistance; } 
-        set { m_ListenableDistance = value;}
-    }
-
-    public Color Color
-    {
-        get { return m_Color; }
-        set { m_Color = value; }
-    }
-
-    public Sprite Sprite
-    { 
-        get { return m_Sprite; }
-        set { m_Sprite = value; }
-    }
-
-    public float SpriteFactor
-    {
-        get { return m_SpriteFactor; }
-        set { m_SpriteFactor = value; }
-    }
-
-    public UInt64 Id
-    {
-        get { return m_id; }
-        set { m_id = value; }
-    }
-
-    public float IndicatorFactor
-    {
-        get { return m_IndicatorFactor; }
-        set { m_IndicatorFactor = value; }
-    }
-
-    public float Vibration
-    {
-        get { return m_vibration; }
-        set { m_vibration = value; }
     }
 }
