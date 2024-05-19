@@ -75,7 +75,9 @@ Para instalar este package sigue los siguientes pasos:
 
     7. Pueden ocurrir dos cosas o lo ha conseguido hacer solo o bien necesita ayuda
         
-        * Todo ha ido bien, pasa al siguiente paso ![alt text](./Instalacion/CorrectImage.png)
+        * Todo ha ido bien, pasa al siguiente paso
+        
+         ![alt text](./Instalacion/CorrectImage.png)
 
         * Requiere de ayuda pulsa en el boton Fix que aparece ![alt text](./Instalacion/FixImage.png)
 
@@ -114,15 +116,13 @@ Para usar esta herramienta se requiere que en la escena exista un objeto Canvas,
 
 ![alt text](./Uso/Radar.png) ![alt text](./Uso/RadarPos.png)
 
-A este objeto se le añadirá el script [Indicator Controller.cs](). En el editor aparecerá un slider este slider representa el porcentaje de pantalla que deseas que ocupe el circulo que formen los indicadores, obtendra la menor de las medidas de la pantalla y ese será el valor del diametro del circulo(teniendo en cuenta el porcenaje seleccionado).
+A este objeto se le añadirá el script [Indicator Controller.cs](./Scripts/IndicatorController.md). En el editor aparecerá un slider este slider representa el porcentaje de pantalla que deseas que ocupe el circulo que formen los indicadores, obtendra la menor de las medidas de la pantalla y ese será el valor del diametro del circulo(teniendo en cuenta el porcenaje seleccionado).
+
+Además aparece un campo llamado Receiver que será el objeto que se quiere que haga de referencia para determinar la posición de los sonidos, ten en cuenta que lo hace detectan su Vector3.Right, por ello si necesita rotar su objeto de referencia(en el editor para ajustar) recomendamos que tenga un objeto padre vacio que sea el que contenga el script y el audio listener y como hijos tenga los objetos rotados para evitar posibles problemas.
 
 ![alt text](./Uso/InidcatorController.png)
 
-En el objeto del juego que sea tu audioListener se debe añadir [Receiver.cs]() En el editor de este script aparecerá un campo llamado player aqui debe añadirse el gameObject que se quiere que haga de de referencia para determinar la posición de los sonidos, ten en cuenta que lo hace detectan su Vector3.Right, por ello si necesita rotar su objeto de referencia recomendamos que tenga un objeto padre vacio que sea el que contenga el script y el audio listener y como hijos tenga los objetos rotados para evitar posibles problemas.
-
-![alt text](./Uso/Receiver.png)
-
-Por último todos los objetos que se desee que sus sonidos sean representados por los indicadores de la herramienta se les añadirá el script [Transmitter.cs]().
+Por último todos los objetos que se desee que sus sonidos sean representados por los indicadores de la herramienta se les añadirá el script [Transmitter.cs](./Scripts/Transmitter.md).
 Esta componente posee bastantes campos modificables desde el editor.
 
 

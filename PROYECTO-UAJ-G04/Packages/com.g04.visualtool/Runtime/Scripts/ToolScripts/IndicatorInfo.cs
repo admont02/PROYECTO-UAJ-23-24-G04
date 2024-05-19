@@ -8,11 +8,15 @@ using UnityEngine;
 /// </summary>
 public class IndicatorInfo 
 {
+    private Vector3 m_ObjectPosition;
     /// <summary>
     /// Posición del sonido en el mundo de juego.
     /// </summary>
-    private Vector3 m_ObjectPosition;
-
+    public Vector3 Position
+    {
+        get { return m_ObjectPosition; }
+        set { m_ObjectPosition = value; }
+    }
     /// <summary>
     /// Textura del indicador que tiene asociado un material.
     /// </summary>
@@ -87,11 +91,7 @@ public class IndicatorInfo
         m_ObjectPosition = Vector3.zero;
     }
 
-    public Vector3 Position
-    {
-        get { return m_ObjectPosition; }
-        set { m_ObjectPosition = value; }
-    }
+
 
     public UnityEngine.UI.RawImage RawImage
     {
@@ -132,6 +132,7 @@ public class IndicatorInfo
     public float IndicatorFactor
     {
         get { return m_IndicatorFactor; }
+        set { m_IndicatorFactor = value; }
     }
 
     public float Vibration

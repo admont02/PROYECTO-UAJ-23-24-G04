@@ -114,6 +114,6 @@ public class Transmitter : MonoBehaviour
         indicator.Position = transform.position;
 
         // Envía el sonido actualizado al controlador.
-        indicatorController.ReceiveEvent(indicator);
+        indicatorController.ReceiveSound(indicator);
     }
 }
