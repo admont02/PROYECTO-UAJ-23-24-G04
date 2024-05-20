@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// Clase que transmite la información del sonido desde un objeto en el juego al controlador de los indicadores.
+/// Clase que transmite la informaciï¿½n del sonido desde un objeto en el juego al controlador de los indicadores.
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class Transmitter : MonoBehaviour
@@ -17,13 +17,13 @@ public class Transmitter : MonoBehaviour
     UnityEngine.UI.RawImage image;
 
     /// <summary>
-    /// Distancia máxima a la que se puede escuchar el sonido.
+    /// Distancia mï¿½xima a la que se puede escuchar el sonido.
     /// </summary>
     [SerializeField]
     float listenableDistance = 10.0f;
 
     /// <summary>
-    /// Instancia que contiene la información del indicador.
+    /// Instancia que contiene la informaciï¿½n del indicador.
     /// </summary>
     IndicatorInfo indicator;
 
@@ -67,17 +67,21 @@ public class Transmitter : MonoBehaviour
     private UInt64 m_id;
 
     /// <summary>
-    /// Nivel de vibración del indicador.
+    /// Nivel de vibraciï¿½n del indicador.
     /// </summary>
     [SerializeField]
     float vibration = 15.0f;
    
     void Start()
     {
+        if ((indicatorController = IndicatorController.instance) == null)
+        {
+            Debug.LogError("No hay CanvasSoundController.");
+        }
         audioSource = GetComponent<AudioSource>();
         m_id = IndicatorController.instance.AskForID();
 
-        // Crea un nuevo indicador con los parámetros iniciales.
+        // Crea un nuevo indicador con los parï¿½metros iniciales.
         indicator = new IndicatorInfo(
             transform.position, 
             image, 
@@ -90,15 +94,12 @@ public class Transmitter : MonoBehaviour
             vibration
         );
 
-        if ((indicatorController = IndicatorController.instance) == null)
-        {
-            Debug.LogError("No hay CanvasSoundController.");
-        }
+
     }
 
     void Update()
     {
-        // Si se está reproduciendo algún sonido envía el evento.
+        // Si se estï¿½ reproduciendo algï¿½n sonido envï¿½a el evento.
         if (audioSource.isPlaying)
         {
             SendEvent();
@@ -106,14 +107,14 @@ public class Transmitter : MonoBehaviour
     }
 
     /// <summary>
-    /// Envía un evento de sonido al controlador de indicadores.
+    /// Envï¿½a un evento de sonido al controlador de indicadores.
     /// </summary>
     void SendEvent()
     {
-        // Actualiza la posición del sonido.
+        // Actualiza la posiciï¿½n del sonido.
         indicator.Position = transform.position;
 
-        // Envía el sonido actualizado al controlador.
+        // Envï¿½a el sonido actualizado al controlador.
         indicatorController.ReceiveSound(indicator);
     }
 }

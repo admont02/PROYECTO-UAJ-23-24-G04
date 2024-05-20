@@ -578,6 +578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891773615}
+  - component: {fileID: 891773616}
   m_Layer: 0
   m_Name: Radar
   m_TagString: Untagged
@@ -604,6 +605,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &891773616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891773614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7991011fd1adba240bebaf163386f333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circleSize: 100
+  player: {fileID: 2109066336}
 --- !u!1 &933900273
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +737,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
@@ -806,19 +820,6 @@ Transform:
   - {fileID: 1660938602}
   m_Father: {fileID: 2109066336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2079c9106b3e441ba15ffbfff6645d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 933900273}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
