@@ -1,22 +1,19 @@
 # Indicadores Visuales para sonido
 
-Añadir un video/ imagen donde se vea la herramienta
-
-(HACER RELEASE Y REPO PUBLICO)
 [![](https://img.shields.io/github/release-date/admont02/PROYECTO-UAJ-23-24-G04.svg)](https://github.com/supyrb/ConfigurableShaders/releases)
 [![Unity 22.3 or later](https://img.shields.io/badge/unity-22.5%20or%20later-green.svg?logo=unity&cacheSeconds=2592000)](https://unity3d.com/get-unity/download/archive)
 ---
 ## Descripción
 
-Esta herramienta te permitirá generar indicadores visuales para aquellos objetos que emiten sonido te permitirá cambiar los colores del indicador, añadirle iconos personalizados, y ajustar el tamaño, ya sea el del propio indicador o bien el tamaño estandar de estos.
+Esta herramienta te permitirá generar indicadores visuales para aquellos objetos que emiten sonido te permitirá cambiar los colores del indicador, añadir iconos personalizados, y ajustar el tamaño, ya sea el del propio indicador o bien el tamaño estándar de estos.
 
-## Guia de instalación
+## Guía de instalación
 
 Para instalar este package sigue los siguientes pasos:
 
-1. Descargarlo,(PONER UN ENLACE DE DESCARGA).
+1. Descarga (PONER UN ENLACE DE DESCARGA).
 2. Descomprime el archivo descargado.
-3. Muevelo a una ubicacion que tengas localizada, recomendamos que sea en la carpeta raiz del proyecto
+3. Muévelo a una ubicación que tengas localizada, recomendamos que sea en la carpeta raíz del proyecto
 ```bash
 <Game-root>
 |-- Assets
@@ -77,7 +74,7 @@ Para instalar este package sigue los siguientes pasos:
         
          ![alt text](./Instalacion/CorrectImage.png)
 
-        * Requiere de ayuda pulsa en el boton Fix que aparece ![alt text](./Instalacion/FixImage.png)
+        * Requiere de ayuda pulsa en el botón Fix que aparece ![alt text](./Instalacion/FixImage.png)
 
     8. Haz click en Window
     
@@ -101,7 +98,7 @@ Para instalar este package sigue los siguientes pasos:
 
         ![alt text](./Instalacion/RPCCheckbox.png)
 
-    13. Haz click en el boton de Initialize and Convert
+    13. Haz click en el botón de Initialize and Convert
 
         ![alt text](./Instalacion/InitalizeConvertSelect.png)
 
@@ -132,7 +129,7 @@ Vamos a describir qué significa cada uno de los campos
 
 * **Listenable Distance** Determina cuál es la distancia máxima a la que se escucha el sonido y a partir de esa distancia dejará de aparecer el indicador
 
-* **Shader Color** Elige el color que representará a ese objeto el alpha se calcula con respecto a la distancia entre el player seleccionado anteriormente y el objeto transmitter en cuestión.
+* **Shader Color** Elige el color que representará a ese objeto el alpha se calcula con respecto a la distancia entre el player seleccionado anteriormente y el objeto Transmitter en cuestión.
 
 * **Scale Indicator** Factor por el que se multiplicará el tamaño estándar del indicador.
 
