@@ -16,7 +16,7 @@ Para instalar este package sigue los siguientes pasos:
 
 1. Descargarlo,(PONER UN ENLACE DE DESCARGA).
 2. Descomprime el archivo descargado.
-3. Muevelo a una ubicacion que tengas localizada, recomendamos que sea en el proyecto en la carpeta de Packages
+3. Muevelo a una ubicacion que tengas localizada, recomendamos que sea en la carpeta raiz del proyecto
 ```bash
 <Game-root>
 |-- Assets
@@ -32,9 +32,7 @@ Para instalar este package sigue los siguientes pasos:
 |     |-- things inside obj
 |
 |-- Packages
-|     |-- manifest.json
-|     |-- package-lock.json
-|     |-- Move the unzip package folder HERE
+|     |-- thigs inside Packages
 |
 |-- ProjectSettings
 |     |-- things inside ProjectSettings
@@ -45,7 +43,7 @@ Para instalar este package sigue los siguientes pasos:
 |-- UserSettings
 |     |-- things inside UserSettings
 |
-|-- Other files
+|-- Move the unzip package folder (com.g04.visualtool) HERE
 |
 ```
 4. Abre tu proyecto e importa el paquete
