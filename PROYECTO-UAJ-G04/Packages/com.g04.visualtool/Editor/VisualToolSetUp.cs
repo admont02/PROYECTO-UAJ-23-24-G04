@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+#if UNITY_EDITOR
 [InitializeOnLoad]
 public class VisualToolSetUp
 {
@@ -100,3 +100,4 @@ private struct ConfigData
     public bool Executed;
 }
 }
+#endif 
