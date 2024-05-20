@@ -1,6 +1,6 @@
 # Indicadores Visuales para sonido
 
-[![](https://img.shields.io/github/release-date/admont02/PROYECTO-UAJ-23-24-G04.svg)](https://github.com/supyrb/ConfigurableShaders/releases)
+[![](https://img.shields.io/github/release-date/admont02/PROYECTO-UAJ-23-24-G04.svg)](https://github.com/admont02/PROYECTO-UAJ-23-24-G04/releases)
 [![Unity 22.3 or later](https://img.shields.io/badge/unity-22.5%20or%20later-green.svg?logo=unity&cacheSeconds=2592000)](https://unity3d.com/get-unity/download/archive)
 ---
 ## Descripción
