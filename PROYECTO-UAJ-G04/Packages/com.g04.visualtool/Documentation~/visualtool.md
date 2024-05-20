@@ -11,8 +11,8 @@ Esta herramienta te permitirá generar indicadores visuales para aquellos objeto
 
 Para instalar este package sigue los siguientes pasos:
 
-1. Descarga (PONER UN ENLACE DE DESCARGA).
-2. Descomprime el archivo descargado.
+1. [Descarga el paquete](https://github.com/admont02/PROYECTO-UAJ-23-24-G04/releases).
+2. Descomprime el archivo `VisualTool.zip` descargado.
 3. Muévelo a una ubicación que tengas localizada, recomendamos que sea en la carpeta raíz del proyecto
 ```bash
 <Game-root>

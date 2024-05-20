@@ -5,3 +5,6 @@ El paquete sigue el [convenio de unity](https://docs.unity3d.com/Manual/cus-layo
 
 
 [Documentación de la herramienta](PROYECTO-UAJ-G04/Packages/com.g04.visualtool/Documentation~/visualtool.md) 
+
+El paquete se encuentra en la [release](https://github.com/admont02/PROYECTO-UAJ-23-24-G04/releases) bajo el nombre `VisualTool.zip`
+
